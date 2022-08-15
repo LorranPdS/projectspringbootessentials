@@ -34,17 +34,12 @@ public class AnimeController {
 
     /* o endereço no Postman abaixo ficaria da seguinte forma:
      http://localhost:8080/animes/find?name=Hunter X Hunter */
-    /* Obs.: foi colocado um name de anime que tem na base de dados, mas podemos
-     fazer alguns tratamentos usando atributos no @RequestParam, bem como colocar
-     mais @RequestParam se for usar mais atributos
-     */
     @GetMapping(path = "/find")
     public ResponseEntity<List<Anime>> findByName(@RequestParam String name){
         return ResponseEntity.ok(animeService.findByName(name));
     }
 
     @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED) // outra forma de fazer sem ser dos modelos acima
     public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody){
             return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
     }
