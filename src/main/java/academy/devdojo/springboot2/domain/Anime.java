@@ -23,6 +23,4 @@ public class Anime {
     private Long id;
     // @JsonProperty("nameCharacter") o nome do atributo em JSON fica assim mas na base fica outro
     private String name;
-
-
 }
