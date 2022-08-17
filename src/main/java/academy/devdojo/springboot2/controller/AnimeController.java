@@ -39,8 +39,11 @@ public class AnimeController {
         return ResponseEntity.ok(animeService.findByName(name));
     }
 
+    /*
+    Vou subir uma exception aqui também, que é uma exceção do tipo checked
+     */
     @PostMapping
-    public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody){
+    public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody) throws Exception{
             return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
     }
 
