@@ -1,6 +1,5 @@
 package academy.devdojo.springboot2.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
