@@ -32,6 +32,16 @@ public class AnimeService {
 
     @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody){
+        /* VALIDAÇÃO DE CAMPOS
+        1) Imagine que você quer evitar que o name nesse postRequest seja salvo como null
+        ou vazio. Geralmente as pessoas fariam um if com uma validação e se tivesse null
+        ou vazio, você lançaria uma exceção, PORÉM o spring consegue fazer essa
+        validação de campo automaticamente para você com uma anotação, e é isso que veremos
+
+        /* ADIÇÃO DA DEPENDÊNCIA spring-boot-starter-validation
+        2) Primeira coisa é adicionar o spring.boot.starter.validation no pom para
+        poder usar a anotação de validação de campos
+         */
          return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
     }
 
