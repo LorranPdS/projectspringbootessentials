@@ -20,12 +20,5 @@ public class Anime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    /*
-    3) Como não estamos usando a class Anime dentro dos controllers, então não usaremos
-     a annotation aqui, mas vamos usar a annotation do spring-validator dentro de
-     alguma que esteja usando dentro dos controllers, que no caso então seria no
-     requests (nosso DTO)
-     */
     private String name;
 }

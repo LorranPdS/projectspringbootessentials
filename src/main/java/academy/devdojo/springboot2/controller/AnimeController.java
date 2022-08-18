@@ -40,11 +40,6 @@ public class AnimeController {
         return ResponseEntity.ok(animeService.findByName(name));
     }
 
-    /*
-    6) Por fim, você precisa informar ao lado do @RequestBody que você usou uma validação
-    do Spring, que seria o item 4) dos comentários. Sendo assim, coloque a annotation
-    chamada @Valid
-     */
     @PostMapping
     public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody animePostRequestBody) {
             return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
