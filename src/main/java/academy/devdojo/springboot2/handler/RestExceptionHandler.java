@@ -23,12 +23,7 @@ aqui baseado como se fosse numa Flag. A Flag que iremos utilizar é a @Exception
 @ControllerAdvice
 @Log4j2
 public class RestExceptionHandler {
-    /*
-    Com a anotação da flag ExceptionHandler você está dizendo: se você lançar
-     uma exceção e ela for do tipo BadRequestException, você utilizará o
-     método que está essa anotação (handlerBadRequestException) e retornar
-     esse valor (ResponseEntity<BadRequestExceptionDetails>).
-     */
+
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<BadRequestExceptionDetails> handlerBadRequestException(BadRequestException bre){
         return new ResponseEntity<>(
@@ -41,17 +36,9 @@ public class RestExceptionHandler {
                         .build(), HttpStatus.BAD_REQUEST);
     }
 
-    /*Antes foi necessário descobrirmos qual será a exceção a ser posta no
-    * @ExceptionHandler, e para descobrirmos, fizemos um post da seguinte forma:
-    * http://localhost:8080/animes?trace=true
-    * Enviar no body o "name":null
-    * Então vá testando da forma como está acima
-    * */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationExceptionDetails> handlerMethodArgumentNotValidException(
             MethodArgumentNotValidException exception){
-        // Colocamos isso abaixo só para vermos no debug os campos dele no terminal
-//        log.info("Fields {}", exception.getBindingResult().getFieldError().getField());
 
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
 

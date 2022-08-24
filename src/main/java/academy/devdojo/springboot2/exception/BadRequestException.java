@@ -14,8 +14,3 @@ public class BadRequestException extends RuntimeException {
         super(message);
     }
 }
-
-/* Antes, eram apresentados 4 campos ao dar o Bad Request no Postman, que eram:
-timestamp, status, error, message e path. Agora nós colocaremos outros campos
-sempre que for uma exceção BadRequest
- */

@@ -5,8 +5,8 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
-@Data // gera os getters e setters e o toString
-@SuperBuilder // utiliza os campos da superclasse
+@Data
+@SuperBuilder
 public class ExceptionDetails {
     protected String title;
     protected int status;
