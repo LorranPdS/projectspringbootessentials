@@ -1,4 +1,4 @@
-package academy.devdojo.springboot2.mapper;
+package academy.devdojo.springboot2.repository.mapper;
 
 import academy.devdojo.springboot2.domain.Anime;
 import academy.devdojo.springboot2.requests.AnimePostRequestBody;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-17T23:43:21-0300",
+    date = "2022-08-27T03:16:11-0300",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.10 (Oracle Corporation)"
 )
 @Component

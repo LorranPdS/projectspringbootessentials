@@ -7,6 +7,8 @@ import academy.devdojo.springboot2.service.AnimeService;
 import academy.devdojo.springboot2.util.DateUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +24,25 @@ import java.util.List;
 public class AnimeController {
     private final DateUtil dateUtil;
     private final AnimeService animeService;
+    /* PAGINAÇÃO
+    1) Paginação é algo muito comum de se fazer quando tivermos que fazer qualquer tipo
+    de API porque não vamos querer retornar todos os dados da base de dados de uma vez só
+    para o meu frontend ou para quem tiver chamando minha API. O Spring facilitou
+    bastante a nossa vida então não precisa de tantas alterações para retornarmos
+    um determinado endpoint paginado. O que iremos precisar é trocar o List pelo Page
+    e seguir conforme mostra abaixo
+
+    3) Você verá no retorno da requisição dados como "totalElements" (total de dados),
+    "last" (última página ou não), "totalPages" (quantas páginas temos), ... São todas
+    geradas pelo Spring.
+    A requisição GET ficará aos moldes abaixo para fazer as chamadas por páginas para usar
+    os atributos que achar melhor:
+        http://localhost:8080/animes?size=5&page=2
+     */
     @GetMapping
-    public ResponseEntity<List<Anime>> list(){
+    public ResponseEntity<Page<Anime>> list(Pageable pageable){
         log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
-        return ResponseEntity.ok(animeService.listAll());
+        return ResponseEntity.ok(animeService.listAll(pageable));
     }
 
     @GetMapping(path = "/{id}")
