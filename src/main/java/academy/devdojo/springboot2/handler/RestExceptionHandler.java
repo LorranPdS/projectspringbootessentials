@@ -20,17 +20,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/*
-1) Vamos padronizar no handler também a mensagem das requisições quando vier algum
-tipo de erro. Primeiro ponto então foi estender a classe ResponseEntityExceptionHandler
-e simulamos com a chamada do Postman "http://localhost:8080/animes?trace=true" e no
-body do Postman faltando uma aspa para causar o erro.
-
-2) Ao entrar na classe que estendemos, você verá um tipo de tratamento justamente
-para esse tipo de erro dito no retorno que deu do Postman. Esse método com o tratamento
-nós iremos copiar e fazer algumas modificações (será o 3)). Ao entrar nela, lembre-se
-de clicar na opção "download resources"
- */
 @ControllerAdvice
 @Log4j2
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -47,12 +36,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                         .build(), HttpStatus.BAD_REQUEST);
     }
 
-    /*
-    4) Trocamos também o tratamento de erro desse método aqui aos moldes do que fizemos
-    no tratamento do erro do item 3) haja vista já existir um modelo parecido. Foram
-    feitas algumas modificações na assinatura do método apenas (seria a parte que tem
-    até as chaves até iniciar o bloco do código)
-     */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException exception, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -74,10 +57,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                         .build(), HttpStatus.BAD_REQUEST);
     }
 
-    /*
-    3) Logo abaixo temos o método que foi copiado, conforme dito no item 2), originalmente
-    com o nome "handleExceptionInternal"
-     */
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(
             Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
