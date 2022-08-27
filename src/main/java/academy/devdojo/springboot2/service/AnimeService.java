@@ -19,11 +19,7 @@ import java.util.List;
 public class AnimeService {
 
     private final AnimeRepository animeRepository;
-    /*
-    2) Aqui seria a 2ª parte onde faremos as mudanças do que começou no Controller.
-    Basicamente seria trocar o List pelo Page e colocá-lo no parâmetro também
-    para depois inseri-lo no findAll.
-     */
+
     public Page<Anime> listAll(Pageable pageable){
         return animeRepository.findAll(pageable);
     }
