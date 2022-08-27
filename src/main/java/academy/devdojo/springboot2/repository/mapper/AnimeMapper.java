@@ -1,4 +1,4 @@
-package academy.devdojo.springboot2.mapper;
+package academy.devdojo.springboot2.repository.mapper;
 
 import academy.devdojo.springboot2.domain.Anime;
 import academy.devdojo.springboot2.requests.AnimePostRequestBody;
