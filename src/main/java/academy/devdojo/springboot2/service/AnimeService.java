@@ -24,6 +24,13 @@ public class AnimeService {
         return animeRepository.findAll(pageable);
     }
 
+    /*
+    2) Aqui continuamos as ações do que foi editado no AnimeController
+     */
+    public List<Anime> listAllNonPageable() {
+        return animeRepository.findAll();
+    }
+
     public List<Anime> findByName(String name){
         return animeRepository.findByName(name);
     }
@@ -49,4 +56,5 @@ public class AnimeService {
 
         animeRepository.save(anime);
     }
+
 }
