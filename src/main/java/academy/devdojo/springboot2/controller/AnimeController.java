@@ -34,11 +34,6 @@ public class AnimeController {
         return ResponseEntity.ok(animeService.listAll(pageable));
     }
 
-    /*
-    1) Antes de tudo, dupliquei o método acima por este usado logo abaixo para podermos
-    começar a aula com o que importa sem termos que nos preocupar com paginação para
-    não manipularmos objetos com conteúdo JSON, que no nosso caso seria o "content"
-     */
     @GetMapping(path = "/all")
     public ResponseEntity<List<Anime>> listAll(){
         log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
