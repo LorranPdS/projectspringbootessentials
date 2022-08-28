@@ -10,4 +10,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-      show-sql: true
+
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type: trace
+#        2) da forma acima o log com o comando Hibernate é mostrado no padrão no console
