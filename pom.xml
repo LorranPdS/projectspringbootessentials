@@ -51,9 +51,6 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<!-- 2) Como faremos testes unitários para Banco de dados, vamos criar
-		 		um banco de dados em memória chamado h2, que é um banco que será criado
-		  		em memória e destruído em seguida -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
