@@ -68,11 +68,6 @@ class AnimeRepositoryTest {
 
         List<Anime> animes = this.animeRepository.findByName(animeSaved.getName());
 
-        /*
-        1) O aviso 'warning' é quando você tem um mesmo objeto com diferentes tipos de exceções.
-        Então o que você poderá fazer é checar se ele não é vazio por exemplo e em seguida verifica
-        se ele tem esse anime que foi salvo
-        */
         Assertions.assertThat(animes)
                 .isNotEmpty()
                 .contains(animeSaved);
@@ -92,17 +87,16 @@ class AnimeRepositoryTest {
     @DisplayName("Save throw ConstraintViolationException when name is empty")
     void save_ThrowConstraintViolationException_WhenNameIsEmpty(){
 
-        // 3) Vamos instanciar um anime, pois a instância é vazia e esse será nosso cenário
         Anime anime = new Anime();
 
-        // 4.a) Essa é uma forma
-//        Assertions.assertThatThrownBy(() -> this.animeRepository.save(anime))
-//                .isInstanceOf(ConstraintViolationException.class);
+        // 4.a) This is one way
+        Assertions.assertThatThrownBy(() -> this.animeRepository.save(anime))
+                .isInstanceOf(ConstraintViolationException.class);
 
-        // 4.b) Essa é outra forma
-        Assertions.assertThatExceptionOfType(ConstraintViolationException.class)
-                .isThrownBy(() -> this.animeRepository.save(anime))
-                .withMessageContaining("The anime's name cannot be empty or null");
+        // 4.b) And this is another way
+//        Assertions.assertThatExceptionOfType(ConstraintViolationException.class)
+//                .isThrownBy(() -> this.animeRepository.save(anime))
+//                .withMessageContaining("The anime's name cannot be empty or null");
     }
 
     private Anime createAnime(){

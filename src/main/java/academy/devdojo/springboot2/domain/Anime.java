@@ -23,7 +23,6 @@ public class Anime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 2) Vamos adicionar ao nosso domain essa exceção caso o anime seja salvo sem dados
     @NotBlank(message = "The anime's name cannot be empty or null")
     private String name;
 }
