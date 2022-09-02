@@ -1,19 +1,18 @@
 package academy.devdojo.springboot2.repository;
 
 import academy.devdojo.springboot2.domain.Anime;
-import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
 @DisplayName("Tests for Anime Repository")
-@Log4j2
 class AnimeRepositoryTest {
 
     @Autowired
@@ -69,7 +68,14 @@ class AnimeRepositoryTest {
 
         List<Anime> animes = this.animeRepository.findByName(animeSaved.getName());
 
-        Assertions.assertThat(animes).isNotEmpty();
+        /*
+        1) O aviso 'warning' é quando você tem um mesmo objeto com diferentes tipos de exceções.
+        Então o que você poderá fazer é checar se ele não é vazio por exemplo e em seguida verifica
+        se ele tem esse anime que foi salvo
+        */
+        Assertions.assertThat(animes)
+                .isNotEmpty()
+                .contains(animeSaved);
         Assertions.assertThat(animes).contains(animeSaved);
     }
 
@@ -80,6 +86,23 @@ class AnimeRepositoryTest {
         List<Anime> animes = this.animeRepository.findByName("This name isn't exists");
 
         Assertions.assertThat(animes).isEmpty();
+    }
+
+    @Test
+    @DisplayName("Save throw ConstraintViolationException when name is empty")
+    void save_ThrowConstraintViolationException_WhenNameIsEmpty(){
+
+        // 3) Vamos instanciar um anime, pois a instância é vazia e esse será nosso cenário
+        Anime anime = new Anime();
+
+        // 4.a) Essa é uma forma
+//        Assertions.assertThatThrownBy(() -> this.animeRepository.save(anime))
+//                .isInstanceOf(ConstraintViolationException.class);
+
+        // 4.b) Essa é outra forma
+        Assertions.assertThatExceptionOfType(ConstraintViolationException.class)
+                .isThrownBy(() -> this.animeRepository.save(anime))
+                .withMessageContaining("The anime's name cannot be empty or null");
     }
 
     private Anime createAnime(){
