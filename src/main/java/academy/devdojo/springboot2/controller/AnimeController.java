@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -22,6 +21,11 @@ import java.util.List;
 @Log4j2
 @RequiredArgsConstructor
 public class AnimeController {
+    /* Criando testes unitários para o nosso Controller
+    1) Agora iremos criar testes para o nosso Controller. Para criarmos uma classe
+    de testes e com o pacote pronto, coloque o cursor em AnimeController (linha 24) e
+    renomeie
+     */
     private final DateUtil dateUtil;
     private final AnimeService animeService;
     /*
@@ -30,13 +34,14 @@ public class AnimeController {
      */
     @GetMapping
     public ResponseEntity<Page<Anime>> list(Pageable pageable){
-        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+        // 13) Tiramos os logs neste método e no de baixo só para simplificar a aula
+//        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAll(pageable));
     }
 
     @GetMapping(path = "/all")
     public ResponseEntity<List<Anime>> listAll(){
-        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+//        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAllNonPageable());
     }
 
