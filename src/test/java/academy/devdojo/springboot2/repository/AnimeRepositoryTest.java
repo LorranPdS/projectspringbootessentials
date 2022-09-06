@@ -1,6 +1,7 @@
 package academy.devdojo.springboot2.repository;
 
 import academy.devdojo.springboot2.domain.Anime;
+import academy.devdojo.springboot2.util.AnimeCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,8 @@ class AnimeRepositoryTest {
     @DisplayName("Save persists anime when sucessful")
     void save_PersistAnime_WhenSuccessful(){
 
-        Anime animeToBeSaved = createAnime();
+        // 7) Agora renomeie de acordo com a classe que você criou
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
 
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
 
@@ -35,7 +37,7 @@ class AnimeRepositoryTest {
     @DisplayName("Save updates anime when sucessful")
     void save_UpdatesAnime_WhenSuccessful(){
 
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
         animeSaved.setName("Overlord");
 
@@ -50,7 +52,7 @@ class AnimeRepositoryTest {
     @DisplayName("Delete removes anime when sucessful")
     void delete_RemovesAnime_WhenSuccessful(){
 
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
 
         this.animeRepository.delete(animeSaved);
@@ -63,7 +65,7 @@ class AnimeRepositoryTest {
     @DisplayName("Find by name returns list of anime when sucessful")
     void findByName_ReturnsListOfAnime_WhenSuccessful(){
 
-        Anime animeToBeSaved = createAnime();
+        Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
 
         List<Anime> animes = this.animeRepository.findByName(animeSaved.getName());
@@ -97,11 +99,5 @@ class AnimeRepositoryTest {
 //        Assertions.assertThatExceptionOfType(ConstraintViolationException.class)
 //                .isThrownBy(() -> this.animeRepository.save(anime))
 //                .withMessageContaining("The anime's name cannot be empty or null");
-    }
-
-    private Anime createAnime(){
-        return Anime.builder()
-                .name("Hajime no Ippo")
-                .build();
     }
 }
