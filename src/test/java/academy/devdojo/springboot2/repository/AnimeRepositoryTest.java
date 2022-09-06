@@ -22,8 +22,6 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Save persists anime when sucessful")
     void save_PersistAnime_WhenSuccessful(){
-
-        // 7) Agora renomeie de acordo com a classe que você criou
         Anime animeToBeSaved = AnimeCreator.createAnimeToBeSaved();
 
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);

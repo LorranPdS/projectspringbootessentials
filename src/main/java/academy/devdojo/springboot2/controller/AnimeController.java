@@ -6,7 +6,6 @@ import academy.devdojo.springboot2.requests.AnimePutRequestBody;
 import academy.devdojo.springboot2.service.AnimeService;
 import academy.devdojo.springboot2.util.DateUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -18,14 +17,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "animes")
-@Log4j2
 @RequiredArgsConstructor
 public class AnimeController {
-    /* Criando testes unitários para o nosso Controller
-    1) Agora iremos criar testes para o nosso Controller. Para criarmos uma classe
-    de testes e com o pacote pronto, coloque o cursor em AnimeController (linha 24) e
-    renomeie
-     */
+
     private final DateUtil dateUtil;
     private final AnimeService animeService;
     /*
@@ -34,14 +28,11 @@ public class AnimeController {
      */
     @GetMapping
     public ResponseEntity<Page<Anime>> list(Pageable pageable){
-        // 13) Tiramos os logs neste método e no de baixo só para simplificar a aula
-//        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAll(pageable));
     }
 
     @GetMapping(path = "/all")
     public ResponseEntity<List<Anime>> listAll(){
-//        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAllNonPageable());
     }
 
