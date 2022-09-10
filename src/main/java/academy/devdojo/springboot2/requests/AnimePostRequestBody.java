@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 // ela nada mais é que uma classe DTO
 @Data
-@Builder // 11) Vamos fazer desse objeto um builder
+@Builder
 public class AnimePostRequestBody {
 
     @NotBlank(message = "The anime's name cannot be empty or null")

@@ -2,7 +2,6 @@ package academy.devdojo.springboot2.util;
 
 import academy.devdojo.springboot2.requests.AnimePutRequestBody;
 
-// 13) Aqui criamos o que criará o objeto para gente
 public class AnimePutRequestBodyCreator {
     public static AnimePutRequestBody createAnimePutRequestBody(){
         return AnimePutRequestBody.builder()
